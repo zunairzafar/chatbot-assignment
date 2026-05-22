@@ -92,6 +92,10 @@ export function DashboardPage() {
   async function handleQuestion(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!question.trim()) { setError('Enter a question first.'); return }
+    if (documents.length === 0 || activeDocumentCount === 0) {
+      setError('Please upload and enable at least one document before asking a question.')
+      return
+    }
     setBusy(true); setError('')
     try {
       const userMessage: ChatMessage = { id: crypto.randomUUID(), role: 'user', content: question.trim() }

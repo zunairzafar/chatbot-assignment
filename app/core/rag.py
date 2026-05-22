@@ -27,7 +27,7 @@ def get_toxic_classifier():
     return _toxic_classifier
 
 
-def is_toxic(text: str, threshold: float = 0.85) -> bool:
+def is_toxic(text: str, threshold: float = 0.55) -> bool:
     classifier = get_toxic_classifier()
     results = classifier(text[:512])
     scores = results[0] if isinstance(results[0], list) else results
